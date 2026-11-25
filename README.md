@@ -68,3 +68,9 @@ The public résumé excludes street address, personal phone number, and referenc
 The local production build, ESLint, formatting, and all eight Playwright tests passed. The browser tests covered widths from 320 to 1600 pixels, both themes, keyboard and JavaScript-disabled navigation, contact fallback, metadata, and case study routes. Configured contact delivery and rate limiting were also exercised against mocked services.
 
 The final local homepage Lighthouse runs scored 100 in all four desktop categories. Mobile scored 78 for performance and 100 for accessibility, best practices, and SEO. Mobile LCP was 3.8 seconds with no measured layout shift.
+
+## Search indexing
+
+The production build uses `SITE_URL` or the hosting provider’s production origin. Netlify and Vercel previews emit `noindex`. Sitemap entries, page canonicals, and structured-data URLs share the same formatting. For a static host that serves directory indexes, use `SITE_TRAILING_SLASH=1` during the build.
+
+After publishing, verify the exact HTTPS URL as a URL-prefix property in [Google Search Console](https://search.google.com/search-console/). Use Google’s HTML file verification for a manual static deployment, or set `GOOGLE_SITE_VERIFICATION` to the token from Google’s HTML tag before building. Submit `sitemap.xml`, then inspect and request indexing for the homepage. Google controls crawl timing and result selection.

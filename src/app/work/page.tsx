@@ -3,8 +3,8 @@ import { ProjectList } from "@/components/projects/project-list";
 import { pageMetadata } from "@/lib/metadata";
 
 export const metadata = pageMetadata(
-  "Selected Work",
-  "Technical case studies in enterprise systems, e-commerce, React voice interaction, and machine learning research.",
+  "Software Engineering Case Studies",
+  "Explore Chamodya Bandara",
   "/work",
 );
 

@@ -3,7 +3,7 @@ import { pageMetadata } from "@/lib/metadata";
 
 export const metadata = pageMetadata(
   "Contact",
-  "Get in touch with Chamodya Bandara about software engineering roles, products, and technical projects.",
+  "Contact Chamodya Bandara, a full-stack software engineer in Sri Lanka, about Laravel, Next.js, enterprise software, and engineering roles.",
   "/contact",
 );
 

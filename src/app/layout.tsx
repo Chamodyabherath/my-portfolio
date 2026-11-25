@@ -21,7 +21,16 @@ export const metadata: Metadata = {
   ...(siteUrl && { metadataBase: siteUrl }),
   title: { default: profile.name, template: `%s | ${profile.name}` },
   icons: { icon: "/icon.svg" },
-  robots: { index: indexable, follow: indexable },
+  robots: {
+    index: indexable,
+    follow: indexable,
+    ...(indexable && {
+      googleBot: { index: true, follow: true, "max-image-preview": "large" },
+    }),
+  },
+  ...(process.env.GOOGLE_SITE_VERIFICATION?.trim() && {
+    verification: { google: process.env.GOOGLE_SITE_VERIFICATION.trim() },
+  }),
 };
 
 const themeScript =

@@ -7,45 +7,21 @@ import {
   EditorialStatement,
 } from "@/components/sections/editorial-home";
 import { EditorialMotion } from "@/components/motion/editorial-motion";
+import { JsonLd } from "@/components/seo/json-ld";
 import { profile } from "@/data/profile";
-import { pageMetadata, siteDescription, siteUrl } from "@/lib/metadata";
+import { pageMetadata, siteDescription } from "@/lib/metadata";
+import { profileStructuredData } from "@/lib/structured-data";
 
 export const metadata = pageMetadata(
-  `${profile.name} | Full-Stack Software Engineer`,
+  `${profile.name} | Full-Stack Software Engineer in Sri Lanka`,
   siteDescription,
   "/",
 );
 
 export default function Home() {
-  const person = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    name: profile.name,
-    jobTitle: profile.title,
-    email: `mailto:${profile.email}`,
-    ...(siteUrl && { url: siteUrl.href }),
-    address: { "@type": "PostalAddress", addressCountry: "LK" },
-    alumniOf: {
-      "@type": "CollegeOrUniversity",
-      name: profile.education.institution,
-    },
-    sameAs: Object.values(profile.social).filter(Boolean),
-    knowsAbout: [
-      "Laravel",
-      "Next.js",
-      "React",
-      "Enterprise software",
-      "Relational databases",
-    ],
-  };
   return (
     <div className="editorial-main">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(person).replace(/</g, "\\u003c"),
-        }}
-      />
+      <JsonLd data={profileStructuredData()} />
       <EditorialHero />
       <EditorialAbout />
       <EditorialStatement />

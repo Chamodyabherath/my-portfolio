@@ -6,6 +6,8 @@ import { Tags } from "@/components/projects/project-list";
 import { Button } from "@/components/ui/button";
 import { projects } from "@/data/projects";
 import { pageMetadata } from "@/lib/metadata";
+import { caseStudyBreadcrumbs } from "@/lib/structured-data";
+import { JsonLd } from "@/components/seo/json-ld";
 
 type Props = PageProps<"/work/[slug]">;
 
@@ -30,6 +32,7 @@ export default async function CaseStudy({ params }: Props) {
 
   return (
     <article className="shell case-study enter">
+      <JsonLd data={caseStudyBreadcrumbs(project.title, slug)} />
       <header className="case-header">
         <Link href="/work" className="text-link">
           All projects

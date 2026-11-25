@@ -1,16 +1,20 @@
 import type { MetadataRoute } from "next";
 import { projects } from "@/data/projects";
-import { siteUrl } from "@/lib/metadata";
+import { canonicalUrl, indexable } from "@/lib/metadata";
+
+export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  if (!siteUrl) return [];
-  return [
+  if (!indexable) return [];
+  const paths = [
     "/",
     "/work",
     "/about",
     "/contact",
     ...projects.map(({ slug }) => `/work/${slug}`),
-  ].map((path) => ({
-    url: new URL(path, siteUrl).href,
-  }));
+  ];
+  return paths.flatMap((path) => {
+    const url = canonicalUrl(path);
+    return url ? [{ url }] : [];
+  });
 }
