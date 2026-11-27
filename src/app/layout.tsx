@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import type { ReactNode } from "react";
 import { Footer } from "@/components/layout/frame";
 import { Navigation } from "@/components/layout/navigation";
+import { CursorRing } from "@/components/motion/cursor-ring";
 import { indexable, siteUrl } from "@/lib/metadata";
 import { profile } from "@/data/profile";
 import "./globals.css";
@@ -56,6 +57,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           {children}
         </main>
         <Footer />
+        <CursorRing />
       </body>
     </html>
   );
